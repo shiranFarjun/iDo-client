@@ -44,7 +44,7 @@ ul li{
     background-image: linear-gradient(#c6b689, rgba(245, 245, 244, 0.698));
     padding: 3rem;
 }
-h2{
+.right-side h2{
     color:#c6b689;
     text-align: center;
 }

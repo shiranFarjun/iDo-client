@@ -26,7 +26,9 @@
 }
 .row ul li{
     margin:2rem;
-    box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.3) !important;
+    /* box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.3) !important; */
+    box-shadow: 0 2.5rem 8rem 2rem rgba(51, 50, 50, 0.06)!important;
+
 }
 
 img{
@@ -35,7 +37,7 @@ img{
 }
 
 .col-md-4{
-    height: 450px;
+    height: 460px;
 }
 .card:hover {
     height: 450px;
@@ -43,7 +45,7 @@ img{
 }
 
 .card-text {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
 }
 
 .overflow {

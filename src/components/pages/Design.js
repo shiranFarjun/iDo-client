@@ -47,16 +47,7 @@ const Design = () => {
     //     setCurrentIndex(index);
     // };
 
-    // const removeAllDesign = () => {
-    //     serviceSupplier.removeAll()
-    //         .then(response => {
-    //             console.log(response.data);
-    //             refreshList();
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-    // };
+ 
 
     const findByCompany = () => {
         console.log('in find- searchByCompany',searchByCompany)
