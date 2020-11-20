@@ -1,7 +1,6 @@
 import baseApi from './baseApi';
 
 const signUp = async (data) => {
-    console.log('in signUp api');
     return baseApi.post(`/users/signup`, data);
 };
 const login = async (data) => {

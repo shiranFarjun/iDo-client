@@ -18,9 +18,8 @@ const Popup = (props) => {
     const [dataProduct, setDataProduct] = useState(initialUser);
     const [selectedOption, setSelectedOption] = useState('')
     const [radioSelect, setRadioSelect] = useState('');
+    const userToken=localStorage.getItem('token');
 
-    const localUser = localStorage.getItem('token');
-    let [userToken, setUserToken] = useState(localUser);
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -51,7 +50,8 @@ const Popup = (props) => {
             productFuncAPI.createNewProduct(data, userToken)
                 .then(response => {
                     console.log(response.data);
-
+                    console.log('active func from ded');
+                    props.refresh();
                 })
                 .catch(e => {
                     console.log(e);
@@ -62,15 +62,15 @@ const Popup = (props) => {
             productFuncAPI.updateProductById(props.idOfProduct, data, userToken)
                 .then(response => {
                     console.log(response.data);
+                    console.log('active func from ded');
+                    props.refresh();
                 })
                 .catch(e => {
                     console.log(e);
                     throw e;
                 });
         }
-        console.log('active func from ded');
         props.closePopup();
-
     };
 
     return (

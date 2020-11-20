@@ -8,8 +8,10 @@ function CardDisplayInfo(props) {
 
     const InfoLink = {
         pathname: props.path,
-        param1: props.lng,
-        param2: props.lat
+        param1: [props.lng,props.lat],
+        param2: props.company,
+        param3:props.phone,
+        param4:props.address
     };
     return (
         <>

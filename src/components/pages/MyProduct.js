@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import userFuncAPI from '../../api/userFuncAPI';
 import productFuncAPI from '../../api/productFuncAPI';
 import './myProduct.css'
 import Popup from './Popup'
@@ -15,28 +14,29 @@ const MyProduct = (props) => {
     const [idProduct, setIdProduct] = useState('')
     let history = useHistory();
 
-    const localUser = localStorage.getItem('token');
-    let [userToken, setUserToken] = useState(localUser);
+    const userToken = localStorage.getItem('token');
+    // let [userToken, setUserToken] = useState(localUser);
 
     useEffect(() => {
         getProductByIdUser();
     },[]);
 
     const toggle = () => {
-        console.log('in toggle');
         addProduct();
         setShowPopup(!showPopup);
-        // getProductByIdUser();
-
     }
 
 
     ///////   A function that returns all the products created by the same user with the id "idUser"   ///////
 
     const getProductByIdUser = () => {
-        productFuncAPI.getProductByIdUser(idUser)  //-"5fac34cae3c64bc09c1e4a02"
+        productFuncAPI.getProductByIdUser(idUser)  //idUser-"5fac34cae3c64bc09c1e4a02"
             .then(response => {
-                setProductInfo(response.data.getProductByIdUser);
+                if(Object.keys(response.data.getProductByIdUser).length === 0){
+                    console.log('you have not product yet');
+                }else{
+                    setProductInfo(response.data.getProductByIdUser);
+                }
             }).catch(e => {
                 console.log(e);
                 throw e;
@@ -56,7 +56,7 @@ const MyProduct = (props) => {
             images: ''
         }
         setProductInfo(prevArray => [...prevArray, newElement]);
-        setIndex(arrayProductsInfo.length)
+        setIndex(arrayProductsInfo.length);
     }
 
     const editItem = (e) => {        
@@ -69,7 +69,8 @@ const MyProduct = (props) => {
     const deleteItem = (e) => {
         productFuncAPI.removeProductByIdAuth(e.target.attributes.getNamedItem('data-id').value, userToken)
             .then(response => {
-                console.log(response.data);
+                console.log('delete product');
+                getProductByIdUser();
             }).catch(e => {
                 console.log(e);
                 throw e;
@@ -97,7 +98,8 @@ const MyProduct = (props) => {
                     info={arrayProductsInfo}
                     text={popText}
                     idOfProduct={idProduct}
-                    closePopup={toggle}
+                    closePopup={e=>setShowPopup(!showPopup)}
+                    refresh={getProductByIdUser}
                 />
                 : null
             }

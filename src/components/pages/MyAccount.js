@@ -9,16 +9,16 @@ const MyAccount = (props) => {
         name: '',
         email: '',
     };
-    let history = useHistory();
-
-    const [image, setImage] = useState({ preview: "", raw: "" });
+    // const [image, setImage] = useState({ preview: "", raw: "" });
     const [idUser, setUserId] = useState(props.location.customNameData);
     const [user, setUser] = useState(initialUser);
-    const MyProductTo = { 
-        pathname: Routes.MyProduct, 
-        param1: idUser 
+    let history = useHistory();
+
+    const MyProductTo = {
+        pathname: Routes.MyProduct,
+        param1: idUser
     };
-  
+
     useEffect(() => {
         getUserById();
     }, []);
@@ -26,9 +26,10 @@ const MyAccount = (props) => {
     const getUserById = () => {
         userFuncAPI.getUserById(idUser)
             .then(response => {
-                user.name = response.data.data.data.name;
-                user.email = response.data.data.data.email;
-
+                setUser(prevState => ({...prevState,
+                    name: response.data.data.data.name,
+                    email: response.data.data.data.email
+                 }));
             }).catch(e => {
                 console.log(e);
                 throw e;
@@ -58,7 +59,13 @@ const MyAccount = (props) => {
 
     };
 
-
+    const onLogoutClick = () => {
+        setUserId(null);
+        localStorage.clear();
+        history.push({
+            pathname: `${Routes.home}`,
+        });
+    };
     // const handleChangeUpload = e => {
     //     if (e.target.files.length) {
     //         setImage({
@@ -67,19 +74,19 @@ const MyAccount = (props) => {
     //         });
     //     }
     // };
-    const handleUpload = async e => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append("image", image.raw);
+    // const handleUpload = async e => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append("image", image.raw);
 
-        await fetch("YOUR_URL", {
-            method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-            body: formData
-        });
-    };
+    //     await fetch("YOUR_URL", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "multipart/form-data"
+    //         },
+    //         body: formData
+    //     });
+    // };
 
 
     return (
@@ -109,10 +116,10 @@ const MyAccount = (props) => {
                         <Link to="#" className='nav-links' >
                         </Link>
                     </li>
-                    <li><i className="fas fa-sign-out-alt"></i> Logout
+                    <li onClick={onLogoutClick}><i className="fas fa-sign-out-alt"></i> Logout
                     <Link to="#" className='nav-links' >
-                    </Link>
-                </li>
+                        </Link>
+                    </li>
                 </ul>
             </div>
             <div className="right-side" >
@@ -120,7 +127,7 @@ const MyAccount = (props) => {
                 <form className="form-account" onSubmit={onSubmit} >
                     <div className="marg">
                         <label className="__label">Full name</label>
-                        <input className="__input" type="text" placeholder={user.fullName} name="fullName" onChange={handleChange} />
+                        <input className="__input" type="text" placeholder={user.name} name="fullName" onChange={handleChange} />
 
                     </div>
                     <div className="marg">

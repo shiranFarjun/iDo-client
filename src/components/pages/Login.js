@@ -35,7 +35,6 @@ const Login = () => {
 
         userFuncAPI.login(data)
             .then(response => {
-                console.log('response.data in login api', response.data);
                 setToken(response.data.token);
                 history.push({
                     pathname: `${Routes.account}`,

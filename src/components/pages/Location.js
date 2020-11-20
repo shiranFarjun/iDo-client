@@ -84,7 +84,7 @@ const Location = () => {
                         LocationList.map((place, index) => (
                             <li className="col-md-4" key={index}>
                                 <CardDisplayInfo company={place.companyName} img={place.imageCover} desc={place.description} 
-                                 phone={place.phone} path={Routes.viewLocation} lat={place.locationCoordinates[0]} lng={place.locationCoordinates[1]}/>
+                                address={place.address} phone={place.phone} path={Routes.viewLocation} lat={place.locationCoordinates[0]} lng={place.locationCoordinates[1]}/>
                             </li>
                         ))}
                 </ul>

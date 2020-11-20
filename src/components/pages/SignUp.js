@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import './signUp.css'
+import React, { useState,useEffect } from "react";
 import userFuncAPI from '../../api/userFuncAPI';
 import Routes from '../../router/Routes'
 import { useHistory } from 'react-router-dom'
+import './signUp.css'
 
 const SignUp = () => {
     const initialUser = {
@@ -12,11 +12,13 @@ const SignUp = () => {
         passwordConfirm: ''
     };
     
-    const [image, setImage] = useState({ preview: "", raw: "" });
+    // const [image, setImage] = useState({ preview: "", raw: "" });
     const [user, setUser] = useState(initialUser);
-    const [idUser, setUserId] = useState('');
     let history = useHistory();
 
+    useEffect(() => {
+        console.log('in signup');
+    }, []);
    
     const handleChange = e => {
         const { name, value } = e.target;
@@ -35,7 +37,7 @@ const SignUp = () => {
 
         userFuncAPI.signUp(data)
             .then(response => {
-                setUserId(response.data.data.user.id);
+                localStorage.setItem('token',response.data.token);
                 history.push({
                     pathname: `${Routes.account}`,
                     customNameData: response.data.data.user.id,
@@ -56,21 +58,21 @@ const SignUp = () => {
     //             raw: e.target.files[0]
     //         });
     //     }
-    // };
-    const handleUpload = async e => {
-        e.preventDefault();
-        const formData = new FormData();
-        console.log('image',formData);
-        formData.append("image", image.raw);
+    // // };
+    // const handleUpload = async e => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     console.log('image',formData);
+    //     formData.append("image", image.raw);
 
-        await fetch("YOUR_URL", {
-            method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-            body: formData
-        });
-    };
+    //     await fetch("YOUR_URL", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "multipart/form-data"
+    //         },
+    //         body: formData
+    //     });
+    // };
 
 
     return (
@@ -93,29 +95,7 @@ const SignUp = () => {
                     <label className="__label">Password confirm</label>
                     <input className="__input" type='password' placeholder='••••••••' minLength='2' name="passwordConfirm" onChange={handleChange} />
                 </div>
-                <div className="marg">
-                    <label className="upload-button">
-                        {image.preview ? (
-                            <img src={image.preview} alt="dummy" width="300" height="300" />
-                        ) : (
-                                <>
-                                    <span className="fa-stack fa-2x mt-3 mb-2">
-                                        <i className="fas fa-circle fa-stack-2x" />
-                                        <i className="fas fa-store fa-stack-1x fa-inverse" />
-                                    </span>
-                                    <h5 className="text-center">Upload your photo</h5>
-                                </>
-                            )}
-                    </label>
-                    <input
-                        type="file"
-                        id="upload-button"
-                        style={{ display: "none" }}
-                        onChange={handleChange}
-                    />
-                    <br />
-                    <button type="submit" className="upload-photo" onClick={handleUpload}>Upload photo</button>
-                </div>
+                
 
                 <button type="submit" className="btn-submit-signUp">Submit</button>
             </form>
@@ -124,3 +104,37 @@ const SignUp = () => {
 }
 export default SignUp
 
+
+
+
+
+/////////////////////////////       need to be after this div:    ////////////////
+// <div className="marg">
+//                     <label className="__label">Password confirm</label>
+//                     <input className="__input" type='password' placeholder='••••••••' minLength='2' name="passwordConfirm" onChange={handleChange} />
+//                 </div>
+
+
+// <div className="marg">
+//                     <label className="upload-button">
+//                         {image.preview ? (
+//                             <img src={image.preview} alt="dummy" width="300" height="300" />
+//                         ) : (
+//                                 <>
+//                                     <span className="fa-stack fa-2x mt-3 mb-2">
+//                                         <i className="fas fa-circle fa-stack-2x" />
+//                                         <i className="fas fa-store fa-stack-1x fa-inverse" />
+//                                     </span>
+//                                     <h5 className="text-center">Upload your photo</h5>
+//                                 </>
+//                             )}
+//                     </label>
+//                     <input
+//                         type="file"
+//                         id="upload-button"
+//                         style={{ display: "none" }}
+//                         onChange={handleChange}
+//                     />
+//                     <br />
+//                     <button type="submit" className="upload-photo" onClick={handleUpload}>Upload photo</button>
+//                 </div>
