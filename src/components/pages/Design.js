@@ -15,6 +15,7 @@ const Design = () => {
     const [searchByCompany, setSearchByCompany] = useState("");
 
     useEffect(() => {
+        localStorage.clear();
         retrieveDesign();
     }, []);
 

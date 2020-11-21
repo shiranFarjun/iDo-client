@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import serviceSupplier from '../../api/serviceSupplier';
 import CardDisplayInfo from '../UI/CardDisplayInfo';
 import '../UI/card-style.css'
+import Routes from '../../router/Routes'
 
 import productFuncAPI from '../../api/productFuncAPI'
 
@@ -12,12 +13,12 @@ const Catering = () => {
     const [searchByCompany, setSearchByCompany] = useState("");
 
     useEffect(() => {
+        localStorage.clear();
         retrieveCatering();
     }, []);
 
     const onChangeSearch = e => {
         const searchCompany = e.target.value;
-        console.log('searchCompany', searchCompany);
         setSearchByCompany(searchCompany);
     };
 
@@ -32,23 +33,19 @@ const Catering = () => {
             });
     };
 
-    // const refreshList = () => {
-    //     retrieveCatering();
-    //     setCurrentCardCatering(null);
-    //     setCurrentIndex(-1);
-    // };
+
 
     // const setActiveCatering = (cardCatering, index) => {
     //     setCurrentCardCatering(cardCatering);
     //     setCurrentIndex(index);
-    // };
+    // };   
 
 
-    const findByCompany = () => {
+    const nameCompany = () => {
         console.log('in find by', searchByCompany)
-        serviceSupplier.findByCompany(1, searchByCompany)
+        productFuncAPI.getByNameCompany(searchByCompany)
             .then(response => {
-                setCateringList(response.data);
+                // setCateringList(response.data);
                 console.log('findByCompany', response.data);
             })
             .catch(e => {
@@ -69,7 +66,7 @@ const Catering = () => {
                 <div className="button-search">
                     <button
                         type="button"
-                        onClick={findByCompany}
+                        onClick={nameCompany}
                     >Search</button>
                 </div>
             </div>
@@ -79,7 +76,7 @@ const Catering = () => {
                     {CateringList &&   //onClick={() => setActiveCatering(catering, index)}
                         CateringList.map((catering, index) => (
                             <li className="col-md-4"  key={index}>  
-                                <CardDisplayInfo company={catering.companyName}  phone={catering.phone} img={catering.imageCover} desc={catering.description}/>
+                                <CardDisplayInfo path={Routes.details} imagesView={catering.images} company={catering.companyName}  phone={catering.phone} img={catering.imageCover} desc={catering.description}/>
                             </li>
                         ))}
                 </ul>

@@ -14,6 +14,9 @@
     display: flex;
     justify-content: space-between;
 }
+.back-page{
+    margin-left: 90%;
+}
 /* 
 .popup-content {
     margin: auto;

@@ -18,6 +18,9 @@ const MyAccount = (props) => {
         pathname: Routes.MyProduct,
         param1: idUser
     };
+    const updatePassword = {
+        pathname: Routes.updatePassword
+    };
 
     useEffect(() => {
         getUserById();
@@ -98,6 +101,11 @@ const MyAccount = (props) => {
 
                         </Link>
                     </li>
+                    <li><i className="fas fa-key"></i> Update Password
+                    <Link to={updatePassword} className='nav-links' >
+
+                    </Link>
+                </li>
                     <li><i className="fas fa-briefcase"></i>  My product
                         <Link to={MyProductTo} className='nav-links'>
 

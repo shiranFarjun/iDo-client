@@ -14,8 +14,8 @@ const Location = () => {
     const [searchByCity, setSearchByCity] = useState("");
 
     useEffect(() => {
+        localStorage.clear();
         retrieveLocation();
-        // console.log(currentCardLocation,currentIndex)
     }, []);
 
     const onChangeSearch = e => {
@@ -48,7 +48,6 @@ const Location = () => {
     //     console.log('hi you clik on me ',index, cardLocation);
     // };
 
-  
 
     const findByCity = () => {
         serviceLocation.findByCity(searchByCity)

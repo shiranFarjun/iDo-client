@@ -3,6 +3,7 @@ import productFuncAPI from '../../api/productFuncAPI';
 import './myProduct.css'
 import Popup from './Popup'
 import { useHistory } from 'react-router-dom'
+import Routes from '../../router/Routes'
 
 
 const MyProduct = (props) => {
@@ -19,7 +20,7 @@ const MyProduct = (props) => {
 
     useEffect(() => {
         getProductByIdUser();
-    },[]);
+    }, []);
 
     const toggle = () => {
         addProduct();
@@ -32,9 +33,9 @@ const MyProduct = (props) => {
     const getProductByIdUser = () => {
         productFuncAPI.getProductByIdUser(idUser)  //idUser-"5fac34cae3c64bc09c1e4a02"
             .then(response => {
-                if(Object.keys(response.data.getProductByIdUser).length === 0){
+                if (Object.keys(response.data.getProductByIdUser).length === 0) {
                     console.log('you have not product yet');
-                }else{
+                } else {
                     setProductInfo(response.data.getProductByIdUser);
                 }
             }).catch(e => {
@@ -59,13 +60,13 @@ const MyProduct = (props) => {
         setIndex(arrayProductsInfo.length);
     }
 
-    const editItem = (e) => {        
+    const editItem = (e) => {
         setIndex(e.target.attributes.getNamedItem('data-index').value)
         setIdProduct(e.target.attributes.getNamedItem('data-id').value);
         setPopText('Edit Product');
         setShowPopup(!showPopup);
     }
-    
+
     const deleteItem = (e) => {
         productFuncAPI.removeProductByIdAuth(e.target.attributes.getNamedItem('data-id').value, userToken)
             .then(response => {
@@ -77,9 +78,15 @@ const MyProduct = (props) => {
             });
         getProductByIdUser();
     }
-
+    const myAccountPage = () => {
+        history.push({
+            pathname: `${Routes.account}`,
+        });
+    }
     return (
         <div className="container-product">
+            <div className="fas fa-undo-alt back-page" onClick={myAccountPage}></div>
+
             <h2>Advertising Products</h2>
             {arrayProductsInfo && arrayProductsInfo.map((product, index) => (
                 <div className="prod" key={index}>
@@ -92,13 +99,15 @@ const MyProduct = (props) => {
             ))
             }
             <div className="fas fa-cart-plus" onClick={toggle}> Add product</div>
+
+
             {showPopup ?
                 <Popup
                     indexArray={index}
                     info={arrayProductsInfo}
                     text={popText}
                     idOfProduct={idProduct}
-                    closePopup={e=>setShowPopup(!showPopup)}
+                    closePopup={e => setShowPopup(!showPopup)}
                     refresh={getProductByIdUser}
                 />
                 : null

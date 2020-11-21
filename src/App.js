@@ -12,6 +12,8 @@ import AboutUs from './components/pages/AboutUs'
 import ViewLocation from './components/pages/ViewLocation'
 import MyAccount from './components/pages/MyAccount'
 import MyProduct from './components/pages/MyProduct'
+import Details from './components/pages/Details'
+import UpdatePassword from './components/UpdatePassword'
 import './app.css';
 
 
@@ -21,6 +23,7 @@ function App() {
   const handleChange = (obj) => {
     setData(obj);
   }
+
 
   return (
     <div className="App">
@@ -36,7 +39,11 @@ function App() {
           <Route path={Routes.catering} exact component={Catering} />
           <Route path={Routes.AboutUs} exact component={AboutUs} />
           <Route path={Routes.viewLocation} exact component={ViewLocation} />
+          <Route path={Routes.details} exact component={Details} />
+          <Route path={Routes.updatePassword} exact component={UpdatePassword} />
           <Route path={Routes.myProject} exact component={MyProduct} />
+
+
         </Switch>
       </BrowserRouter>
     </div>

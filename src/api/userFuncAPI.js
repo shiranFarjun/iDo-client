@@ -42,8 +42,12 @@ const resetPassword = async (token, data) => {
     return await baseApi.patch(`/users/resetPassword/${token}`, data);
 };
 
-const updateMyPassword = async (data) => {
-    return await baseApi.patch(`/users/updateMyPassword`, data);
+const updateMyPassword = async (data,token) => {
+    return await baseApi.patch(`/users/updateMyPassword`, data, {
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    });
 };
 
 

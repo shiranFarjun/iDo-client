@@ -10,7 +10,9 @@ const Routes = {
     AboutUs:'/about-us',
     viewLocation:'/viewLocation',
     account:'/myAccount', 
-    MyProduct:'/myProduct'
+    MyProduct:'/myProduct',
+    details:'/details',
+    updatePassword:'/updatePassword'
 }
 
 export default Routes;
