@@ -47,9 +47,11 @@
     box-sizing: border-box;
     /* Pseudo element (a visible thing that isn't really in the DOM).
         Also needs -ms- */
+        cursor: pointer;
 }
 
 .form__input:focus {
+    cursor: pointer;
     outline: none;
     border-bottom: 3px solid #55c57a;
 }

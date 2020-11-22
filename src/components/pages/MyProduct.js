@@ -11,9 +11,9 @@ const MyProduct = (props) => {
     const [arrayProductsInfo, setProductInfo] = useState([]);
     const [popText, setPopText] = useState('');
     const [index, setIndex] = useState('');
-    const [idUser, setUserId] = useState(props.location.param1);
     const [idProduct, setIdProduct] = useState('')
     let history = useHistory();
+    const idUser=props.location.param;
 
     const userToken = localStorage.getItem('token');
     // let [userToken, setUserToken] = useState(localUser);

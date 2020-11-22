@@ -36,12 +36,6 @@ const Location = () => {
             });
     };
   
-    // const refreshList = () => {
-    //     retrieveLocation();
-    //     setCurrentCardLocation(null);
-    //     setCurrentIndex(-1);
-    // };
-
     // const setActiveLocation = (cardLocation, index) => {
     //     setCurrentCardLocation(cardLocation);
     //     setCurrentIndex(index);

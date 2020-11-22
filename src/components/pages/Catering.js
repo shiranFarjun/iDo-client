@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import serviceSupplier from '../../api/serviceSupplier';
 import CardDisplayInfo from '../UI/CardDisplayInfo';
-import '../UI/card-style.css'
 import Routes from '../../router/Routes'
-
 import productFuncAPI from '../../api/productFuncAPI'
+import '../UI/card-style.css'
+
 
 const Catering = () => {
     const [CateringList, setCateringList] = useState([]);
@@ -76,7 +75,7 @@ const Catering = () => {
                     {CateringList &&   //onClick={() => setActiveCatering(catering, index)}
                         CateringList.map((catering, index) => (
                             <li className="col-md-4"  key={index}>  
-                                <CardDisplayInfo path={Routes.details} imagesView={catering.images} company={catering.companyName}  phone={catering.phone} img={catering.imageCover} desc={catering.description}/>
+                                <CardDisplayInfo category={"categoryFood"} path={Routes.details} imagesView={catering.images} company={catering.companyName}  phone={catering.phone} img={catering.imageCover} desc={catering.description}/>
                             </li>
                         ))}
                 </ul>

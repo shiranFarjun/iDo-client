@@ -89,7 +89,7 @@ const Design = () => {
                         DesignList.map((design, index) => (
                             <li className="col-md-4" key={index}>
                                 <CardDisplayInfo 
-                                company={design.companyName}  phone={design.phone} img={design.imageCover} desc={design.description}/>
+                                company={design.companyName}  category={"categoryDesign"} phone={design.phone} img={design.imageCover} desc={design.description}/>
                             </li>
                         ))}
                 </ul>

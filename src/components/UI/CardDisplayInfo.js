@@ -3,16 +3,37 @@ import { Link } from 'react-router-dom';
 
 
 function CardDisplayInfo(props) {
-    console.log("props.lat,props.lng", props.lat, props.lng);
-
-    const InfoLink = {
-        pathname: props.path,
-        param1: [props.lng,props.lat],
-        param2: props.company,
-        param3:props.phone,
-        param4:props.address,
-        param5:props.imagesView
-    };
+    // console.log("props.lat,props.lng", props.lat, props.lng);
+    let InfoLink;
+    if (props.category==="categoryFood"||props.category==="categoryDesign"){
+        InfoLink = {
+            pathname: props.path,
+            param2: props.company,
+            param3:props.phone,
+            param4:props.address,
+            param5:props.imagesView,
+            param6:props.desc
+        };
+    }else{
+        InfoLink = {
+            pathname: props.path,
+            param1: [props.lng,props.lat],
+            param2: props.company,
+            param3:props.phone,
+            param4:props.address,
+            param5:props.imagesView,
+            param6:props.desc
+        };
+    }
+    // const InfoLink = {
+    //     pathname: props.path,
+    //     param1: [props.lng,props.lat],
+    //     param2: props.company,
+    //     param3:props.phone,
+    //     param4:props.address,
+    //     param5:props.imagesView,
+    //     param6:props.desc
+    // };
     return (
         <>
             <div className="card text-center shadow">

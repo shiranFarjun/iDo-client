@@ -1,4 +1,5 @@
 .popup {
+    cursor: pointer;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -28,7 +29,7 @@
     display: flex;
     /* margin-right: 3rem; */
     justify-content: space-between;
-
+    cursor: pointer;
 }
 
 .popup .header-pop {
@@ -43,11 +44,13 @@
 }
 
 .popup_inner button {
+  
     background: white;
     border: none;
     font-weight: bold;
 }
 .btn-submit-popup {
+    cursor: pointer;
     text-align: center;
     color:#c6b689;
     padding:0.5rem;
@@ -55,6 +58,7 @@
     cursor: pointer;
 }
 .radio{
+    cursor: pointer;
     display: inline-block;
     margin:1rem ;
     padding:1rem;
