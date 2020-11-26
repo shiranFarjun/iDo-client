@@ -89,14 +89,12 @@ const SignUp = () => {
                 </div>
                 <div className="marg">
                     <label className="__label">Password</label>
-                    <input className="__input" type='password' placeholder='••••••••' minLength='2' name="password" onChange={handleChange} />
+                    <input className="__input" type='password' placeholder='••••••••' minLength='8' name="password" onChange={handleChange} />
                 </div>
                 <div className="marg">
                     <label className="__label">Password confirm</label>
-                    <input className="__input" type='password' placeholder='••••••••' minLength='2' name="passwordConfirm" onChange={handleChange} />
+                    <input className="__input" type='password' placeholder='••••••••' minLength='8' name="passwordConfirm" onChange={handleChange} />
                 </div>
-                
-
                 <button type="submit" className="btn-submit-signUp">Submit</button>
             </form>
         </div>

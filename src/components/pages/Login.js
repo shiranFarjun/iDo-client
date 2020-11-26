@@ -36,6 +36,7 @@ const Login = () => {
         userFuncAPI.login(data)
             .then(response => {
                 setToken(response.data.token);
+                console.log(response.data.data.user.id);
                 history.push({
                     pathname: `${Routes.account}`,
                     customNameData: response.data.data.user.id,
@@ -59,7 +60,7 @@ const Login = () => {
                         <input className="form__input" type='email' placeholder='you@example.com' name="email" onChange={handleChange} />
 
                         <label className="form__label">Password</label>
-                        <input className="form__input" type='password' placeholder='••••••••' minLength='2' name="password" onChange={handleChange} />
+                        <input className="form__input" type='password' placeholder='••••••••' minLength='8' name="password" onChange={handleChange} />
 
 
                         <button type="submit" className="btn-submit-login">Login</button>

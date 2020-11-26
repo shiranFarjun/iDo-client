@@ -5,12 +5,14 @@ import { useHistory, Link } from 'react-router-dom'
 import './myAccount.css'
 
 const MyAccount = (props) => {
+    
     const initialUser = {
         name: '',
         email: '',
     };
     // const [image, setImage] = useState({ preview: "", raw: "" });
     const [idUser, setUserId] = useState(props.location.customNameData);
+    console.log(idUser);
     const [user, setUser] = useState(initialUser);
     let history = useHistory();
 

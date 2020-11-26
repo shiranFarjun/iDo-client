@@ -14,7 +14,7 @@ function CardDisplayInfo(props) {
             param5:props.imagesView,
             param6:props.desc
         };
-    }else{
+    }else{                     //when i click on obj from category=location
         InfoLink = {
             pathname: props.path,
             param1: [props.lng,props.lat],
@@ -25,15 +25,7 @@ function CardDisplayInfo(props) {
             param6:props.desc
         };
     }
-    // const InfoLink = {
-    //     pathname: props.path,
-    //     param1: [props.lng,props.lat],
-    //     param2: props.company,
-    //     param3:props.phone,
-    //     param4:props.address,
-    //     param5:props.imagesView,
-    //     param6:props.desc
-    // };
+  
     return (
         <>
             <div className="card text-center shadow">

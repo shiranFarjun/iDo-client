@@ -41,7 +41,7 @@ const Popup = (props) => {
             phone: dataProduct.phone,
             category: radioSelect,
             locationCoordinates: [31.771959, 35.217018],
-            images: '/need to import path for photo'
+            images:'https://i.ibb.co/XVMrPJ7/d14-480x640.jpg'
         }
 
         console.log('data on popup in submit', data);

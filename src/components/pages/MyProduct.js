@@ -13,7 +13,7 @@ const MyProduct = (props) => {
     const [index, setIndex] = useState('');
     const [idProduct, setIdProduct] = useState('')
     let history = useHistory();
-    const idUser=props.location.param;
+    const idUser=props.location.param1;
 
     const userToken = localStorage.getItem('token');
     // let [userToken, setUserToken] = useState(localUser);
@@ -31,6 +31,7 @@ const MyProduct = (props) => {
     ///////   A function that returns all the products created by the same user with the id "idUser"   ///////
 
     const getProductByIdUser = () => {
+        console.log('in product by id user',idUser);
         productFuncAPI.getProductByIdUser(idUser)  //idUser-"5fac34cae3c64bc09c1e4a02"
             .then(response => {
                 if (Object.keys(response.data.getProductByIdUser).length === 0) {
